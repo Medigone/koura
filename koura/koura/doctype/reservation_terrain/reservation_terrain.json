@@ -5,10 +5,15 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "terrain",
+  "status",
+  "section_break_icst",
   "date",
   "heure_debut",
   "heure_fin",
+  "section_break_rcob",
+  "terrain",
+  "prix",
+  "column_break_gqnl",
   "reserver_par",
   "match"
  ],
@@ -45,11 +50,35 @@
    "fieldtype": "Link",
    "label": "Match",
    "options": "Match"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Statut",
+   "options": "Confirm\u00e9\nAnnul\u00e9"
+  },
+  {
+   "fieldname": "section_break_icst",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_rcob",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "prix",
+   "fieldtype": "Currency",
+   "label": "Prix",
+   "precision": "0"
+  },
+  {
+   "fieldname": "column_break_gqnl",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-16 14:56:37.918207",
+ "modified": "2025-06-16 15:17:41.774686",
  "modified_by": "Administrator",
  "module": "Koura",
  "name": "Reservation Terrain",
