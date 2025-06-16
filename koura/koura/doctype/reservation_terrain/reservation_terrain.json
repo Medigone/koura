@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-06-16 13:43:50.358615",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "terrain",
+  "date",
+  "heure_debut",
+  "heure_fin",
+  "reserver_par",
+  "match"
+ ],
+ "fields": [
+  {
+   "fieldname": "terrain",
+   "fieldtype": "Data",
+   "label": "Terrain"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "heure_debut",
+   "fieldtype": "Datetime",
+   "label": "Heure de d\u00e9but"
+  },
+  {
+   "fieldname": "heure_fin",
+   "fieldtype": "Datetime",
+   "label": "Heure de fin"
+  },
+  {
+   "default": "User",
+   "fieldname": "reserver_par",
+   "fieldtype": "Link",
+   "label": "R\u00e9serv\u00e9 Par",
+   "options": "User"
+  },
+  {
+   "fieldname": "match",
+   "fieldtype": "Link",
+   "label": "Match",
+   "options": "Match"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-06-16 14:56:37.918207",
+ "modified_by": "Administrator",
+ "module": "Koura",
+ "name": "Reservation Terrain",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

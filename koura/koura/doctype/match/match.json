@@ -35,7 +35,7 @@
    "fieldname": "type",
    "fieldtype": "Select",
    "label": "Type",
-   "options": "6 Vs 6\n8 Vs 8\n11 Vs 11"
+   "options": "\n6 Vs 6\n8 Vs 8\n11 Vs 11"
   },
   {
    "fieldname": "terrain",
@@ -58,12 +58,14 @@
   {
    "fieldname": "nbr_jr_blanc",
    "fieldtype": "Int",
-   "label": "Nombre joueurs \u00e9quipe Blancs"
+   "label": "Nombre joueurs \u00e9quipe Blancs",
+   "read_only": 1
   },
   {
    "fieldname": "nbr_jr_noir",
    "fieldtype": "Int",
-   "label": "Nombre joueurs \u00e9quipe Noirs"
+   "label": "Nombre joueurs \u00e9quipe Noirs",
+   "read_only": 1
   },
   {
    "fieldname": "prix",
@@ -90,7 +92,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-16 13:23:38.108309",
+ "modified": "2025-06-16 13:33:24.301729",
  "modified_by": "Administrator",
  "module": "Koura",
  "name": "Match",
