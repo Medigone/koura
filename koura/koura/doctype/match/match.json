@@ -1,0 +1,115 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-06-16 11:21:34.590048",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "status",
+  "date_heure",
+  "section_break_hydp",
+  "type",
+  "organisateur",
+  "public",
+  "column_break_sgbs",
+  "terrain",
+  "prix",
+  "section_break_rflj",
+  "nbr_jr_blanc",
+  "column_break_oamq",
+  "nbr_jr_noir"
+ ],
+ "fields": [
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Statut",
+   "options": "Ouvert\nComplet\nAnnul\u00e9\nTermin\u00e9"
+  },
+  {
+   "fieldname": "date_heure",
+   "fieldtype": "Datetime",
+   "label": "Date et heure"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "6 Vs 6\n8 Vs 8\n11 Vs 11"
+  },
+  {
+   "fieldname": "terrain",
+   "fieldtype": "Data",
+   "label": "Terrain"
+  },
+  {
+   "default": "0",
+   "fieldname": "public",
+   "fieldtype": "Check",
+   "label": "Match public"
+  },
+  {
+   "default": "User",
+   "fieldname": "organisateur",
+   "fieldtype": "Link",
+   "label": "Organisateur",
+   "options": "User"
+  },
+  {
+   "fieldname": "nbr_jr_blanc",
+   "fieldtype": "Int",
+   "label": "Nombre joueurs \u00e9quipe Blancs"
+  },
+  {
+   "fieldname": "nbr_jr_noir",
+   "fieldtype": "Int",
+   "label": "Nombre joueurs \u00e9quipe Noirs"
+  },
+  {
+   "fieldname": "prix",
+   "fieldtype": "Currency",
+   "label": "Prix",
+   "precision": "0"
+  },
+  {
+   "fieldname": "section_break_hydp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_sgbs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_rflj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_oamq",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-06-16 13:23:38.108309",
+ "modified_by": "Administrator",
+ "module": "Koura",
+ "name": "Match",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
