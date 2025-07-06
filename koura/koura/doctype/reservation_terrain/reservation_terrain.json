@@ -15,6 +15,7 @@
   "column_break_reservation",
   "duree_heures",
   "date_heure_fin",
+  "type_evenement",
   "section_break_tarification",
   "prix_unitaire",
   "montant_total",
@@ -25,6 +26,9 @@
   "statut",
   "notes",
   "section_break_integration",
+  "facture",
+  "paiement",
+  "column_break_integration",
   "sales_invoice",
   "payment_entry"
  ],
@@ -48,7 +52,7 @@
    "fieldname": "client",
    "fieldtype": "Link",
    "label": "Client",
-   "options": "Customer",
+   "options": "Client",
    "reqd": 1,
    "in_list_view": 1
   },
@@ -86,6 +90,13 @@
    "fieldtype": "Datetime",
    "label": "Date et Heure de Fin",
    "read_only": 1
+  },
+  {
+   "fieldname": "type_evenement",
+   "fieldtype": "Select",
+   "label": "Type d'Événement",
+   "options": "Normal\nTournoi\nEntraînement\nMatch Officiel\nÉvénement Spécial",
+   "default": "Normal"
   },
   {
    "fieldname": "section_break_tarification",
@@ -146,22 +157,27 @@
   {
    "fieldname": "section_break_integration",
    "fieldtype": "Section Break",
-   "label": "Intégration ERPNext"
+   "label": "Intégration et Facturation"
   },
   {
-   "fieldname": "sales_invoice",
+   "fieldname": "facture",
    "fieldtype": "Link",
-   "label": "Facture de Vente",
-   "options": "Sales Invoice",
+   "label": "Facture",
+   "options": "Facture",
    "read_only": 1
   },
   {
-   "fieldname": "payment_entry",
+   "fieldname": "paiement",
    "fieldtype": "Link",
-   "label": "Écriture de Paiement",
-   "options": "Payment Entry",
+   "label": "Paiement",
+   "options": "Paiement",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_integration",
+   "fieldtype": "Column Break"
   }
+
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,

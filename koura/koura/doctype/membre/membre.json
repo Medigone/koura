@@ -102,8 +102,7 @@
    "fieldname": "date_adhesion",
    "fieldtype": "Date",
    "label": "Date d'Adhésion",
-   "reqd": 1,
-   "default": "Today"
+   "reqd": 1
   },
   {
    "fieldname": "date_expiration",
@@ -203,25 +202,7 @@
    "label": "Réduction Applicable (%)",
    "read_only": 1
   },
-  {
-   "fieldname": "section_break_integration",
-   "fieldtype": "Section Break",
-   "label": "Intégration ERPNext"
-  },
-  {
-   "fieldname": "customer",
-   "fieldtype": "Link",
-   "label": "Client ERPNext",
-   "options": "Customer",
-   "read_only": 1
-  },
-  {
-   "fieldname": "contact",
-   "fieldtype": "Link",
-   "label": "Contact ERPNext",
-   "options": "Contact",
-   "read_only": 1
-  },
+
   {
    "fieldname": "section_break_notes",
    "fieldtype": "Section Break",

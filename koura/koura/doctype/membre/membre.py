@@ -58,72 +58,11 @@ class Membre(Document):
 	
 	def after_insert(self):
 		"""Actions après l'insertion du membre."""
-		self.create_customer()
-		self.create_contact()
+		pass
 	
-	def create_customer(self):
-		"""Crée un client dans ERPNext."""
-		if self.customer:
-			return
-		
-		try:
-			customer_name = f"{self.prenom} {self.nom}"
-			
-			# Vérifier si le client existe déjà
-			existing_customer = frappe.db.exists("Customer", customer_name)
-			if existing_customer:
-				self.customer = existing_customer
-				self.save()
-				return
-			
-			# Créer un nouveau client
-			customer = frappe.get_doc({
-				"doctype": "Customer",
-				"customer_name": customer_name,
-				"customer_type": "Individual",
-				"customer_group": "Individual",
-				"territory": "Algeria",
-				"custom_numero_membre": self.numero_membre,
-				"custom_niveau_fidelite": self.niveau_fidelite
-			})
-			
-			customer.insert()
-			self.customer = customer.name
-			self.save()
-			
-		except Exception as e:
-			frappe.log_error(f"Erreur lors de la création du client: {str(e)}")
+
 	
-	def create_contact(self):
-		"""Crée un contact dans ERPNext."""
-		if self.contact or not self.customer:
-			return
-		
-		try:
-			contact = frappe.get_doc({
-				"doctype": "Contact",
-				"first_name": self.prenom,
-				"last_name": self.nom,
-				"email_ids": [{
-					"email_id": self.email,
-					"is_primary": 1
-				}] if self.email else [],
-				"phone_nos": [{
-					"phone": self.telephone,
-					"is_primary_phone": 1
-				}] if self.telephone else [],
-				"links": [{
-					"link_doctype": "Customer",
-					"link_name": self.customer
-				}]
-			})
-			
-			contact.insert()
-			self.contact = contact.name
-			self.save()
-			
-		except Exception as e:
-			frappe.log_error(f"Erreur lors de la création du contact: {str(e)}")
+
 	
 	def add_loyalty_points(self, points):
 		"""Ajoute des points de fidélité au membre.
@@ -187,18 +126,23 @@ class Membre(Document):
 		Returns:
 			dict: Statistiques du membre
 		"""
+		# Chercher un client Koura avec le même nom et email
+		client_koura = None
+		if self.email:
+			client_koura = frappe.db.get_value("Client", {"email": self.email}, "name")
+		
 		# Compter les réservations
 		reservations_count = frappe.db.count(
 			"Reservation Terrain",
-			filters={"client": self.customer}
-		)
+			filters={"client": client_koura}
+		) if client_koura else 0
 		
 		# Calculer le montant total des réservations
 		total_reservations = frappe.db.sql("""
 			SELECT SUM(montant_total)
 			FROM `tabReservation Terrain`
 			WHERE client = %s AND docstatus = 1
-		""", (self.customer,))[0][0] or 0
+		""", (client_koura,))[0][0] or 0 if client_koura else 0
 		
 		return {
 			"reservations_count": reservations_count,

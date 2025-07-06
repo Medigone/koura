@@ -1,0 +1,284 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-27 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "section_informations_base",
+  "client",
+  "date_facture",
+  "column_break_base",
+  "statut",
+  "type_facture",
+  "section_references",
+  "reservation_terrain",
+  "numero_commande",
+  "column_break_ref",
+  "reference_externe",
+  "section_articles",
+  "articles",
+  "section_totaux",
+  "sous_total_ht",
+  "total_tva",
+  "column_break_totaux",
+  "total_remise",
+  "total_ttc",
+  "section_paiement",
+  "mode_paiement",
+  "statut_paiement",
+  "column_break_paiement",
+  "date_echeance",
+  "montant_paye",
+  "section_adresse",
+  "adresse_facturation",
+  "section_notes",
+  "notes",
+  "conditions_paiement"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Série de Nommage",
+   "options": "FAC-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_informations_base",
+   "fieldtype": "Section Break",
+   "label": "Informations de Base"
+  },
+  {
+   "fieldname": "client",
+   "fieldtype": "Link",
+   "label": "Client",
+   "options": "Client",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "date_facture",
+   "fieldtype": "Date",
+   "label": "Date de Facture",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_base",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "statut",
+   "fieldtype": "Select",
+   "label": "Statut",
+   "options": "Brouillon\nÉmise\nEnvoyée\nPayée\nPartiellement Payée\nEn Retard\nAnnulée",
+   "default": "Brouillon",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "type_facture",
+   "fieldtype": "Select",
+   "label": "Type de Facture",
+   "options": "Facture\nFacture Pro-forma\nDevis\nAvoir",
+   "default": "Facture",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_references",
+   "fieldtype": "Section Break",
+   "label": "Références"
+  },
+  {
+   "fieldname": "reservation_terrain",
+   "fieldtype": "Link",
+   "label": "Réservation Terrain",
+   "options": "Reservation Terrain"
+  },
+  {
+   "fieldname": "numero_commande",
+   "fieldtype": "Data",
+   "label": "Numéro de Commande"
+  },
+  {
+   "fieldname": "column_break_ref",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reference_externe",
+   "fieldtype": "Data",
+   "label": "Référence Externe"
+  },
+  {
+   "fieldname": "section_articles",
+   "fieldtype": "Section Break",
+   "label": "Articles"
+  },
+  {
+   "fieldname": "articles",
+   "fieldtype": "Table",
+   "label": "Articles",
+   "options": "Ligne Facture",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_totaux",
+   "fieldtype": "Section Break",
+   "label": "Totaux"
+  },
+  {
+   "fieldname": "sous_total_ht",
+   "fieldtype": "Currency",
+   "label": "Sous-total HT (DA)",
+   "read_only": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "total_tva",
+   "fieldtype": "Currency",
+   "label": "Total TVA (DA)",
+   "read_only": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_totaux",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_remise",
+   "fieldtype": "Currency",
+   "label": "Total Remise (DA)",
+   "read_only": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "total_ttc",
+   "fieldtype": "Currency",
+   "label": "Total TTC (DA)",
+   "read_only": 1,
+   "precision": "2",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_paiement",
+   "fieldtype": "Section Break",
+   "label": "Paiement"
+  },
+  {
+   "fieldname": "mode_paiement",
+   "fieldtype": "Select",
+   "label": "Mode de Paiement",
+   "options": "Espèces\nCarte Bancaire\nVirement\nChèque\nPaiement Mobile\nCrédit"
+  },
+  {
+   "fieldname": "statut_paiement",
+   "fieldtype": "Select",
+   "label": "Statut de Paiement",
+   "options": "En Attente\nPayé\nPartiellement Payé\nEn Retard\nAnnulé",
+   "default": "En Attente",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_paiement",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_echeance",
+   "fieldtype": "Date",
+   "label": "Date d'Échéance"
+  },
+  {
+   "fieldname": "montant_paye",
+   "fieldtype": "Currency",
+   "label": "Montant Payé (DA)",
+   "precision": "2",
+   "default": "0"
+  },
+  {
+   "fieldname": "section_adresse",
+   "fieldtype": "Section Break",
+   "label": "Adresse de Facturation"
+  },
+  {
+   "fieldname": "adresse_facturation",
+   "fieldtype": "Text",
+   "label": "Adresse de Facturation"
+  },
+  {
+   "fieldname": "section_notes",
+   "fieldtype": "Section Break",
+   "label": "Notes et Conditions"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "conditions_paiement",
+   "fieldtype": "Text",
+   "label": "Conditions de Paiement",
+   "default": "Paiement à réception de facture. Pénalités de retard applicables selon la réglementation en vigueur."
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Koura",
+ "name": "Facture",
+ "naming_rule": "By 'Naming Series' field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Gestionnaire de Stade",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Caissier",
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employé"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "name",
+ "track_changes": 1
+}

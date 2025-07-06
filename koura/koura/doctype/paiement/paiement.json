@@ -1,0 +1,244 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-27 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "section_informations_base",
+  "facture",
+  "client",
+  "column_break_base",
+  "date_paiement",
+  "statut",
+  "section_montants",
+  "montant_paiement",
+  "column_break_montants",
+  "montant_facture",
+  "montant_restant",
+  "section_mode_paiement",
+  "mode_paiement",
+  "column_break_mode",
+  "reference_paiement",
+  "section_details_bancaires",
+  "numero_cheque",
+  "banque",
+  "column_break_bancaire",
+  "numero_transaction",
+  "compte_bancaire",
+  "section_notes",
+  "notes",
+  "recu_paiement"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Série de Nommage",
+   "options": "PAY-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_informations_base",
+   "fieldtype": "Section Break",
+   "label": "Informations de Base"
+  },
+  {
+   "fieldname": "facture",
+   "fieldtype": "Link",
+   "label": "Facture",
+   "options": "Facture",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "client",
+   "fieldtype": "Link",
+   "label": "Client",
+   "options": "Client",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_base",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_paiement",
+   "fieldtype": "Date",
+   "label": "Date de Paiement",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "statut",
+   "fieldtype": "Select",
+   "label": "Statut",
+   "options": "Brouillon\nValidé\nAnnulé\nRemboursé",
+   "default": "Brouillon",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_montants",
+   "fieldtype": "Section Break",
+   "label": "Montants"
+  },
+  {
+   "fieldname": "montant_paiement",
+   "fieldtype": "Currency",
+   "label": "Montant du Paiement (DA)",
+   "precision": "2",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_montants",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "montant_facture",
+   "fieldtype": "Currency",
+   "label": "Montant de la Facture (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "montant_restant",
+   "fieldtype": "Currency",
+   "label": "Montant Restant (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_mode_paiement",
+   "fieldtype": "Section Break",
+   "label": "Mode de Paiement"
+  },
+  {
+   "fieldname": "mode_paiement",
+   "fieldtype": "Select",
+   "label": "Mode de Paiement",
+   "options": "Espèces\nCarte Bancaire\nVirement Bancaire\nChèque\nPaiement Mobile\nCrédit",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_mode",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reference_paiement",
+   "fieldtype": "Data",
+   "label": "Référence de Paiement"
+  },
+  {
+   "fieldname": "section_details_bancaires",
+   "fieldtype": "Section Break",
+   "label": "Détails Bancaires",
+   "depends_on": "eval:doc.mode_paiement in ['Chèque', 'Virement Bancaire', 'Carte Bancaire']"
+  },
+  {
+   "fieldname": "numero_cheque",
+   "fieldtype": "Data",
+   "label": "Numéro de Chèque",
+   "depends_on": "eval:doc.mode_paiement == 'Chèque'"
+  },
+  {
+   "fieldname": "banque",
+   "fieldtype": "Data",
+   "label": "Banque",
+   "depends_on": "eval:doc.mode_paiement in ['Chèque', 'Virement Bancaire']"
+  },
+  {
+   "fieldname": "column_break_bancaire",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "numero_transaction",
+   "fieldtype": "Data",
+   "label": "Numéro de Transaction",
+   "depends_on": "eval:doc.mode_paiement in ['Carte Bancaire', 'Virement Bancaire', 'Paiement Mobile']"
+  },
+  {
+   "fieldname": "compte_bancaire",
+   "fieldtype": "Data",
+   "label": "Compte Bancaire",
+   "depends_on": "eval:doc.mode_paiement == 'Virement Bancaire'"
+  },
+  {
+   "fieldname": "section_notes",
+   "fieldtype": "Section Break",
+   "label": "Notes et Reçu"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "recu_paiement",
+   "fieldtype": "Check",
+   "label": "Reçu de Paiement Émis",
+   "default": "0"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Koura",
+ "name": "Paiement",
+ "naming_rule": "By 'Naming Series' field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Gestionnaire de Stade",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Caissier",
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employé"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "name",
+ "track_changes": 1
+}

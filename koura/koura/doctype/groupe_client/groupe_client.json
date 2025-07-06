@@ -1,0 +1,184 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:nom_groupe",
+ "creation": "2025-01-27 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "nom_groupe",
+  "description",
+  "column_break_info",
+  "couleur",
+  "actif",
+  "section_tarification",
+  "remise_pourcentage",
+  "prix_special_heure",
+  "column_break_tarif",
+  "conditions_remise",
+  "section_limites",
+  "limite_reservations_jour",
+  "limite_reservations_mois",
+  "column_break_limites",
+  "duree_max_reservation",
+  "avance_max_reservation",
+  "section_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "nom_groupe",
+   "fieldtype": "Data",
+   "label": "Nom du Groupe",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "column_break_info",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "couleur",
+   "fieldtype": "Color",
+   "label": "Couleur",
+   "default": "#3498db"
+  },
+  {
+   "fieldname": "actif",
+   "fieldtype": "Check",
+   "label": "Actif",
+   "default": "1",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_tarification",
+   "fieldtype": "Section Break",
+   "label": "Tarification"
+  },
+  {
+   "fieldname": "remise_pourcentage",
+   "fieldtype": "Percent",
+   "label": "Remise (%)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "prix_special_heure",
+   "fieldtype": "Currency",
+   "label": "Prix Spécial par Heure (DA)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_tarif",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "conditions_remise",
+   "fieldtype": "Text",
+   "label": "Conditions de Remise"
+  },
+  {
+   "fieldname": "section_limites",
+   "fieldtype": "Section Break",
+   "label": "Limites et Restrictions"
+  },
+  {
+   "fieldname": "limite_reservations_jour",
+   "fieldtype": "Int",
+   "label": "Limite Réservations/Jour",
+   "default": "3"
+  },
+  {
+   "fieldname": "limite_reservations_mois",
+   "fieldtype": "Int",
+   "label": "Limite Réservations/Mois",
+   "default": "30"
+  },
+  {
+   "fieldname": "column_break_limites",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "duree_max_reservation",
+   "fieldtype": "Int",
+   "label": "Durée Max Réservation (heures)",
+   "default": "4"
+  },
+  {
+   "fieldname": "avance_max_reservation",
+   "fieldtype": "Int",
+   "label": "Avance Max Réservation (jours)",
+   "default": "30"
+  },
+  {
+   "fieldname": "section_notes",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes Internes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Koura",
+ "name": "Groupe Client",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Gestionnaire de Stade",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Caissier"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employé"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "nom_groupe",
+ "track_changes": 1
+}

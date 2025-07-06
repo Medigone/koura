@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:nom_terrain",
- "creation": "2025-01-20 10:00:00.000000",
+ "creation": "2025-01-20 10:00:00",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -14,8 +14,7 @@
   "eclairage",
   "column_break_details",
   "prix_par_heure",
-  "disponible",
-  "statut_terrain",
+  "statut_general",
   "section_break_horaires",
   "horaires_ouverture",
   "column_break_horaires",
@@ -30,6 +29,7 @@
   {
    "fieldname": "nom_terrain",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Nom du Terrain",
    "reqd": 1,
    "unique": 1
@@ -42,25 +42,24 @@
   {
    "fieldname": "section_break_details",
    "fieldtype": "Section Break",
-   "label": "Détails du Terrain"
+   "label": "D\u00e9tails du Terrain"
   },
   {
    "fieldname": "type_surface",
    "fieldtype": "Select",
    "label": "Type de Surface",
-   "options": "Herbe Naturelle\nGazon Synthétique\nFutsal\nBéton\nTerre Battue"
+   "options": "Herbe Naturelle\nGazon Synth\u00e9tique\nFutsal\nB\u00e9ton\nTerre Battue"
   },
   {
    "fieldname": "capacite",
    "fieldtype": "Int",
-   "label": "Capacité (nombre de joueurs max)",
-   "default": "22"
+   "label": "Capacit\u00e9 (nombre de joueurs max)"
   },
   {
+   "default": "0",
    "fieldname": "eclairage",
    "fieldtype": "Check",
-   "label": "Éclairage disponible",
-   "default": "0"
+   "label": "\u00c9clairage disponible"
   },
   {
    "fieldname": "column_break_details",
@@ -73,17 +72,12 @@
    "precision": "0"
   },
   {
-   "fieldname": "disponible",
-   "fieldtype": "Check",
-   "label": "Terrain Disponible",
-   "default": "1"
-  },
-  {
-   "fieldname": "statut_terrain",
+   "default": "Actif",
+   "fieldname": "statut_general",
    "fieldtype": "Select",
-   "label": "Statut du Terrain",
-   "options": "Disponible\nRéservé\nMaintenance\nHors Service",
-   "default": "Disponible"
+   "label": "Statut Général du Terrain",
+   "options": "Actif\nEn Maintenance\nFermé Temporairement\nHors Service",
+   "in_list_view": 1
   },
   {
    "fieldname": "section_break_horaires",
@@ -91,20 +85,20 @@
    "label": "Horaires d'Ouverture"
   },
   {
+   "default": "08:00:00",
    "fieldname": "horaires_ouverture",
    "fieldtype": "Time",
-   "label": "Heure d'Ouverture",
-   "default": "08:00:00"
+   "label": "Heure d'Ouverture"
   },
   {
    "fieldname": "column_break_horaires",
    "fieldtype": "Column Break"
   },
   {
+   "default": "22:00:00",
    "fieldname": "horaires_fermeture",
    "fieldtype": "Time",
-   "label": "Heure de Fermeture",
-   "default": "22:00:00"
+   "label": "Heure de Fermeture"
   },
   {
    "fieldname": "section_break_localisation",
@@ -114,28 +108,28 @@
   {
    "fieldname": "adresse",
    "fieldtype": "Small Text",
-   "label": "Adresse Complète"
+   "label": "Adresse Compl\u00e8te"
   },
   {
    "fieldname": "coordonnees_gps",
    "fieldtype": "Geolocation",
-   "label": "Coordonnées GPS"
+   "label": "Coordonn\u00e9es GPS"
   },
   {
    "fieldname": "section_break_tarification",
    "fieldtype": "Section Break",
-   "label": "Tarification par Créneaux"
+   "label": "Tarification par Cr\u00e9neaux"
   },
   {
    "fieldname": "tarification_creneaux",
    "fieldtype": "Table",
-   "label": "Tarification par Créneaux",
+   "label": "Tarification par Cr\u00e9neaux",
    "options": "Tarification Creneau"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-20 10:00:00.000000",
+ "modified": "2025-07-06 19:42:10.355379",
  "modified_by": "Administrator",
  "module": "Koura",
  "name": "Terrain",
@@ -164,7 +158,7 @@
   },
   {
    "read": 1,
-   "role": "Employé"
+   "role": "Employ\u00e9"
   }
  ],
  "sort_field": "modified",

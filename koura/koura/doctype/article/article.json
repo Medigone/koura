@@ -1,0 +1,286 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-27 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "section_informations_base",
+  "nom_article",
+  "code_article",
+  "column_break_base",
+  "type_article",
+  "categorie",
+  "actif",
+  "section_description",
+  "description_courte",
+  "description_detaillee",
+  "section_tarification",
+  "prix_unitaire",
+  "unite_mesure",
+  "column_break_tarif",
+  "tva_applicable",
+  "taux_tva",
+  "section_stock",
+  "gestion_stock",
+  "stock_actuel",
+  "column_break_stock",
+  "stock_minimum",
+  "stock_maximum",
+  "section_terrain",
+  "lie_terrain",
+  "terrains_applicables",
+  "section_horaires",
+  "disponible_24h",
+  "heures_disponibilite",
+  "section_notes",
+  "notes_internes"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Série de Nommage",
+   "options": "ART-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_informations_base",
+   "fieldtype": "Section Break",
+   "label": "Informations de Base"
+  },
+  {
+   "fieldname": "nom_article",
+   "fieldtype": "Data",
+   "label": "Nom de l'Article",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "code_article",
+   "fieldtype": "Data",
+   "label": "Code Article",
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_base",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "type_article",
+   "fieldtype": "Select",
+   "label": "Type d'Article",
+   "options": "Service\nProduit\nLocation\nAbonnement\nÉvénement",
+   "default": "Service",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "categorie",
+   "fieldtype": "Select",
+   "label": "Catégorie",
+   "options": "Réservation Terrain\nLocation Équipement\nRestauration\nBoisson\nAccessoire\nFormation\nTournoi\nMaintenance\nAutre",
+   "default": "Réservation Terrain"
+  },
+  {
+   "fieldname": "actif",
+   "fieldtype": "Check",
+   "label": "Actif",
+   "default": "1",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_description",
+   "fieldtype": "Section Break",
+   "label": "Description"
+  },
+  {
+   "fieldname": "description_courte",
+   "fieldtype": "Data",
+   "label": "Description Courte"
+  },
+  {
+   "fieldname": "description_detaillee",
+   "fieldtype": "Text",
+   "label": "Description Détaillée"
+  },
+  {
+   "fieldname": "section_tarification",
+   "fieldtype": "Section Break",
+   "label": "Tarification"
+  },
+  {
+   "fieldname": "prix_unitaire",
+   "fieldtype": "Currency",
+   "label": "Prix Unitaire (DA)",
+   "reqd": 1,
+   "precision": "2",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "unite_mesure",
+   "fieldtype": "Select",
+   "label": "Unité de Mesure",
+   "options": "Heure\nJour\nSemaine\nMois\nPièce\nKg\nLitre\nMètre\nForfait",
+   "default": "Heure"
+  },
+  {
+   "fieldname": "column_break_tarif",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tva_applicable",
+   "fieldtype": "Check",
+   "label": "TVA Applicable",
+   "default": "1"
+  },
+  {
+   "fieldname": "taux_tva",
+   "fieldtype": "Percent",
+   "label": "Taux TVA (%)",
+   "default": "19",
+   "depends_on": "tva_applicable"
+  },
+  {
+   "fieldname": "section_stock",
+   "fieldtype": "Section Break",
+   "label": "Gestion de Stock"
+  },
+  {
+   "fieldname": "gestion_stock",
+   "fieldtype": "Check",
+   "label": "Gestion de Stock",
+   "default": "0"
+  },
+  {
+   "fieldname": "stock_actuel",
+   "fieldtype": "Float",
+   "label": "Stock Actuel",
+   "depends_on": "gestion_stock",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_stock",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "stock_minimum",
+   "fieldtype": "Float",
+   "label": "Stock Minimum",
+   "depends_on": "gestion_stock",
+   "precision": "2"
+  },
+  {
+   "fieldname": "stock_maximum",
+   "fieldtype": "Float",
+   "label": "Stock Maximum",
+   "depends_on": "gestion_stock",
+   "precision": "2"
+  },
+  {
+   "fieldname": "section_terrain",
+   "fieldtype": "Section Break",
+   "label": "Liaison avec Terrains"
+  },
+  {
+   "fieldname": "lie_terrain",
+   "fieldtype": "Check",
+   "label": "Lié à des Terrains Spécifiques",
+   "default": "0"
+  },
+  {
+   "fieldname": "terrains_applicables",
+   "fieldtype": "Table MultiSelect",
+   "label": "Terrains Applicables",
+   "options": "Terrain",
+   "depends_on": "lie_terrain"
+  },
+  {
+   "fieldname": "section_horaires",
+   "fieldtype": "Section Break",
+   "label": "Disponibilité Horaire"
+  },
+  {
+   "fieldname": "disponible_24h",
+   "fieldtype": "Check",
+   "label": "Disponible 24h/24",
+   "default": "1"
+  },
+  {
+   "fieldname": "heures_disponibilite",
+   "fieldtype": "Table",
+   "label": "Heures de Disponibilité",
+   "options": "Horaire Disponibilite Article",
+   "depends_on": "eval:!doc.disponible_24h"
+  },
+  {
+   "fieldname": "section_notes",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes_internes",
+   "fieldtype": "Text",
+   "label": "Notes Internes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Koura",
+ "name": "Article",
+ "naming_rule": "By Naming Series field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Gestionnaire de Stade",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Caissier",
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employé"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "nom_article",
+ "track_changes": 1
+}

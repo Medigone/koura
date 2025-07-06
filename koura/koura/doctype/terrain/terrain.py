@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import get_time, time_diff_in_hours
+from frappe.utils import get_time, time_diff_in_hours, get_datetime
 
 
 class Terrain(Document):
@@ -53,11 +53,13 @@ class Terrain(Document):
 		"""
 		heure_obj = get_time(heure)
 		
-		# Recherche d'un créneau spécifique
+		# Recherche d'un créneau spécifique disponible
 		for creneau in self.tarification_creneaux:
 			if (
 				(creneau.jour_semaine == jour or creneau.jour_semaine == "Tous les jours")
 				and creneau.type_evenement == type_evenement
+				and creneau.disponible
+				and creneau.statut_creneau == "Disponible"
 				and get_time(creneau.heure_debut) <= heure_obj <= get_time(creneau.heure_fin)
 			):
 				return creneau.prix_creneau
@@ -75,7 +77,8 @@ class Terrain(Document):
 		Returns:
 			bool: True si disponible, False sinon
 		"""
-		if not self.disponible or self.statut_terrain != "Disponible":
+		# Vérifier le statut général du terrain
+		if self.statut_general != "Actif":
 			return False
 		
 		# Vérifier les réservations existantes
@@ -90,3 +93,36 @@ class Terrain(Document):
 		)
 		
 		return reservations_conflictuelles == 0
+	
+	def is_creneau_disponible(self, jour, heure_debut, heure_fin, type_evenement="Normal"):
+		"""Vérifie si un créneau spécifique est disponible.
+		
+		Args:
+			jour (str): Jour de la semaine
+			heure_debut (str): Heure de début au format HH:MM:SS
+			heure_fin (str): Heure de fin au format HH:MM:SS
+			type_evenement (str): Type d'événement
+			
+		Returns:
+			bool: True si le créneau est disponible, False sinon
+		"""
+		# Vérifier le statut général du terrain
+		if self.statut_general != "Actif":
+			return False
+		
+		heure_debut_obj = get_time(heure_debut)
+		heure_fin_obj = get_time(heure_fin)
+		
+		# Rechercher un créneau correspondant
+		for creneau in self.tarification_creneaux:
+			if (
+				(creneau.jour_semaine == jour or creneau.jour_semaine == "Tous les jours")
+				and creneau.type_evenement == type_evenement
+				and creneau.disponible
+				and creneau.statut_creneau == "Disponible"
+				and get_time(creneau.heure_debut) <= heure_debut_obj
+				and get_time(creneau.heure_fin) >= heure_fin_obj
+			):
+				return True
+		
+		return False

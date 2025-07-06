@@ -1,0 +1,274 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-27 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "section_informations_personnelles",
+  "nom_complet",
+  "prenom",
+  "nom_famille",
+  "column_break_noms",
+  "telephone",
+  "email",
+  "date_naissance",
+  "section_adresse",
+  "adresse_ligne_1",
+  "adresse_ligne_2",
+  "column_break_adresse",
+  "ville",
+  "code_postal",
+  "wilaya",
+  "section_informations_client",
+  "type_client",
+  "groupe_client",
+  "column_break_client",
+  "statut",
+  "date_creation",
+  "section_preferences",
+  "langue_preferee",
+  "mode_paiement_prefere",
+  "column_break_preferences",
+  "notifications_sms",
+  "notifications_email",
+  "section_integration",
+  "customer_erpnext",
+  "section_notes",
+  "notes_internes"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Série de Nommage",
+   "options": "CLI-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_informations_personnelles",
+   "fieldtype": "Section Break",
+   "label": "Informations Personnelles"
+  },
+  {
+   "fieldname": "nom_complet",
+   "fieldtype": "Data",
+   "label": "Nom Complet",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "prenom",
+   "fieldtype": "Data",
+   "label": "Prénom"
+  },
+  {
+   "fieldname": "nom_famille",
+   "fieldtype": "Data",
+   "label": "Nom de Famille"
+  },
+  {
+   "fieldname": "column_break_noms",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Data",
+   "label": "Téléphone",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email",
+   "unique": 1
+  },
+  {
+   "fieldname": "date_naissance",
+   "fieldtype": "Date",
+   "label": "Date de Naissance"
+  },
+  {
+   "fieldname": "section_adresse",
+   "fieldtype": "Section Break",
+   "label": "Adresse"
+  },
+  {
+   "fieldname": "adresse_ligne_1",
+   "fieldtype": "Data",
+   "label": "Adresse Ligne 1"
+  },
+  {
+   "fieldname": "adresse_ligne_2",
+   "fieldtype": "Data",
+   "label": "Adresse Ligne 2"
+  },
+  {
+   "fieldname": "column_break_adresse",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ville",
+   "fieldtype": "Data",
+   "label": "Ville"
+  },
+  {
+   "fieldname": "code_postal",
+   "fieldtype": "Data",
+   "label": "Code Postal"
+  },
+  {
+   "fieldname": "wilaya",
+   "fieldtype": "Select",
+   "label": "Wilaya",
+   "options": "Adrar\nChlef\nLaghouat\nOum El Bouaghi\nBatna\nBéjaïa\nBiskra\nBéchar\nBlida\nBouira\nTamanrasset\nTébessa\nTlemcen\nTiaret\nTizi Ouzou\nAlger\nDjelfa\nJijel\nSétif\nSaïda\nSkikda\nSidi Bel Abbès\nAnnaba\nGuelma\nConstantine\nMédéa\nMostaganem\nM'Sila\nMascara\nOuargla\nOran\nEl Bayadh\nIllizi\nBordj Bou Arréridj\nBoumerdès\nEl Tarf\nTindouf\nTissemsilt\nEl Oued\nKhenchela\nSouk Ahras\nTipaza\nMila\nAïn Defla\nNaâma\nAïn Témouchent\nGhardaïa\nRelizane\nTimimoun\nBordj Badji Mokhtar\nOuled Djellal\nBéni Abbès\nIn Salah\nIn Guezzam\nTouggourt\nDjanet\nEl M'Ghair\nEl Meniaa"
+  },
+  {
+   "fieldname": "section_informations_client",
+   "fieldtype": "Section Break",
+   "label": "Informations Client"
+  },
+  {
+   "fieldname": "type_client",
+   "fieldtype": "Select",
+   "label": "Type de Client",
+   "options": "Individuel\nEntreprise\nClub Sportif\nÉcole\nAssociation",
+   "default": "Individuel",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "groupe_client",
+   "fieldtype": "Link",
+   "label": "Groupe de Client",
+   "options": "Groupe Client"
+  },
+  {
+   "fieldname": "column_break_client",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "statut",
+   "fieldtype": "Select",
+   "label": "Statut",
+   "options": "Actif\nInactif\nSuspendu\nBloqué",
+   "default": "Actif",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "date_creation",
+   "fieldtype": "Datetime",
+   "label": "Date de Création",
+   "default": "now",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_preferences",
+   "fieldtype": "Section Break",
+   "label": "Préférences"
+  },
+  {
+   "fieldname": "langue_preferee",
+   "fieldtype": "Select",
+   "label": "Langue Préférée",
+   "options": "Français\nArabe\nAnglais",
+   "default": "Français"
+  },
+  {
+   "fieldname": "mode_paiement_prefere",
+   "fieldtype": "Select",
+   "label": "Mode de Paiement Préféré",
+   "options": "Espèces\nCarte Bancaire\nVirement\nChèque\nPaiement Mobile",
+   "default": "Espèces"
+  },
+  {
+   "fieldname": "column_break_preferences",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "notifications_sms",
+   "fieldtype": "Check",
+   "label": "Notifications SMS",
+   "default": "1"
+  },
+  {
+   "fieldname": "notifications_email",
+   "fieldtype": "Check",
+   "label": "Notifications Email",
+   "default": "1"
+  },
+
+  {
+   "fieldname": "section_notes",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes_internes",
+   "fieldtype": "Text",
+   "label": "Notes Internes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Koura",
+ "name": "Client",
+ "naming_rule": "By Naming Series field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Gestionnaire de Stade",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Caissier",
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employé"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "nom_complet",
+ "track_changes": 1
+}

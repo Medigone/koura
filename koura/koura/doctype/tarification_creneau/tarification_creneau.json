@@ -9,7 +9,10 @@
   "heure_debut",
   "heure_fin",
   "prix_creneau",
-  "type_evenement"
+  "type_evenement",
+  "column_break_statut",
+  "disponible",
+  "statut_creneau"
  ],
  "fields": [
   {
@@ -48,6 +51,25 @@
    "label": "Type d'Événement",
    "options": "Normal\nWeek-end\nJour Férié\nTournoi\nÉvénement Spécial",
    "default": "Normal"
+  },
+  {
+   "fieldname": "column_break_statut",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "disponible",
+   "fieldtype": "Check",
+   "label": "Créneau Disponible",
+   "in_list_view": 1
+  },
+  {
+   "default": "Disponible",
+   "fieldname": "statut_creneau",
+   "fieldtype": "Select",
+   "label": "Statut du Créneau",
+   "options": "Disponible\nRéservé\nMaintenance\nHors Service",
+   "in_list_view": 1
   }
  ],
  "index_web_pages_for_search": 0,

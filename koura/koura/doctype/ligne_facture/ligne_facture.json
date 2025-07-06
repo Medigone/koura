@@ -1,0 +1,157 @@
+{
+ "actions": [],
+ "creation": "2025-01-27 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "article",
+  "description",
+  "column_break_1",
+  "quantite",
+  "unite_mesure",
+  "section_prix",
+  "prix_unitaire",
+  "column_break_prix",
+  "montant_ht",
+  "section_remise",
+  "pourcentage_remise",
+  "column_break_remise",
+  "montant_remise",
+  "section_tva",
+  "taux_tva",
+  "column_break_tva",
+  "montant_tva",
+  "section_total",
+  "montant_ttc"
+ ],
+ "fields": [
+  {
+   "fieldname": "article",
+   "fieldtype": "Link",
+   "label": "Article",
+   "options": "Article",
+   "in_list_view": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "quantite",
+   "fieldtype": "Float",
+   "label": "Quantité",
+   "precision": "2",
+   "reqd": 1,
+   "default": "1",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "unite_mesure",
+   "fieldtype": "Data",
+   "label": "Unité de Mesure",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_prix",
+   "fieldtype": "Section Break",
+   "label": "Prix"
+  },
+  {
+   "fieldname": "prix_unitaire",
+   "fieldtype": "Currency",
+   "label": "Prix Unitaire (DA)",
+   "precision": "2",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_prix",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "montant_ht",
+   "fieldtype": "Currency",
+   "label": "Montant HT (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_remise",
+   "fieldtype": "Section Break",
+   "label": "Remise"
+  },
+  {
+   "fieldname": "pourcentage_remise",
+   "fieldtype": "Percent",
+   "label": "Pourcentage de Remise (%)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_remise",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "montant_remise",
+   "fieldtype": "Currency",
+   "label": "Montant Remise (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_tva",
+   "fieldtype": "Section Break",
+   "label": "TVA"
+  },
+  {
+   "fieldname": "taux_tva",
+   "fieldtype": "Percent",
+   "label": "Taux TVA (%)",
+   "precision": "2",
+   "default": "19"
+  },
+  {
+   "fieldname": "column_break_tva",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "montant_tva",
+   "fieldtype": "Currency",
+   "label": "Montant TVA (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_total",
+   "fieldtype": "Section Break",
+   "label": "Total"
+  },
+  {
+   "fieldname": "montant_ttc",
+   "fieldtype": "Currency",
+   "label": "Montant TTC (DA)",
+   "precision": "2",
+   "read_only": 1,
+   "in_list_view": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-01-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Koura",
+ "name": "Ligne Facture",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,6 +1,6 @@
 # ⚽ Koura DZ - Application de Gestion des Terrains de Foot Amateurs
 
-**Koura DZ** est une application personnalisée basée sur le Frappe Framework, intégrée à ERPNext, destinée aux gestionnaires de stades de football amateur (foot à 5, foot à 7, mini-foot, etc.).  
+**Koura DZ** est une application personnalisée basée sur le Frappe Framework, destinée aux gestionnaires de stades de football amateur (foot à 5, foot à 7, mini-foot, etc.).  
 Elle permet de centraliser les opérations quotidiennes : gestion des terrains, des réservations, des membres, des ventes de produits, de la maintenance, et bien plus.
 
 ---
@@ -38,18 +38,6 @@ Elle permet de centraliser les opérations quotidiennes : gestion des terrains, 
 - Historique des interventions
 
 ---
-
-## 🔌 Intégration avec ERPNext
-
-**Koura DZ** est conçue pour exploiter pleinement les modules ERPNext, garantissant une gestion cohérente et centralisée.
-
-### Modules ERPNext utilisés
-
-- **Comptabilité** : génération automatique de factures de vente (Sales Invoice) et enregistrement des paiements (Payment Entry)
-- **Stock** : gestion des articles consommables via les modules Item, Warehouse, Stock Entry
-- **Point de vente (POS)** : vente rapide des produits de la boutique directement via l’interface POS d’ERPNext
-- **Ressources humaines (RH)** : suivi des employés, présences, rôles et plannings
-- **CRM** : gestion de la relation client, rappels de réservation, campagnes marketing
 
 ### Rôles et permissions
 

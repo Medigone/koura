@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import add_to_date, get_datetime, get_weekday, flt
+from frappe.utils import add_to_date, get_datetime, get_weekday, flt, today
 from datetime import timedelta
 
 
@@ -28,12 +28,25 @@ class ReservationTerrain(Document):
 		if not self.terrain or not self.date_heure_debut or not self.date_heure_fin:
 			return
 		
-		# Vérifier si le terrain existe et est disponible
+		# Vérifier la disponibilité du terrain et du créneau
 		terrain_doc = frappe.get_doc("Terrain", self.terrain)
-		if not terrain_doc.disponible or terrain_doc.statut_terrain != "Disponible":
-			frappe.throw(
-				frappe._("Le terrain {0} n'est pas disponible.").format(self.terrain)
-			)
+		
+		# Vérifier la disponibilité générale du terrain
+		if not terrain_doc.is_disponible(self.date_heure_debut, self.date_heure_fin):
+			frappe.throw(frappe._("Le terrain n'est pas disponible pour cette période."))
+		
+		# Vérifier la disponibilité du créneau spécifique
+		jour_semaine = get_datetime(self.date_heure_debut).strftime("%A")
+		jour_fr = {
+			"Monday": "Lundi", "Tuesday": "Mardi", "Wednesday": "Mercredi",
+			"Thursday": "Jeudi", "Friday": "Vendredi", "Saturday": "Samedi", "Sunday": "Dimanche"
+		}.get(jour_semaine, jour_semaine)
+		
+		heure_debut = get_datetime(self.date_heure_debut).time().strftime("%H:%M:%S")
+		heure_fin = get_datetime(self.date_heure_fin).time().strftime("%H:%M:%S")
+		
+		if not terrain_doc.is_creneau_disponible(jour_fr, heure_debut, heure_fin, self.type_evenement or "Normal"):
+			frappe.throw(frappe._("Aucun créneau disponible pour cette période et ce type d'événement."))
 		
 		# Vérifier les horaires d'ouverture
 		self.validate_opening_hours(terrain_doc)
@@ -125,47 +138,188 @@ class ReservationTerrain(Document):
 	def on_submit(self):
 		"""Actions à effectuer lors de la soumission."""
 		self.statut = "Confirmée"
-		self.create_sales_invoice()
+		self.create_facture()
 	
-	def create_sales_invoice(self):
-		"""Crée une facture de vente dans ERPNext."""
-		if self.sales_invoice:
+	def create_facture(self):
+		"""Crée une facture dans le système Koura."""
+		if self.facture:
 			return
 		
 		try:
-			# Créer la facture de vente
-			sales_invoice = frappe.get_doc({
-				"doctype": "Sales Invoice",
-				"customer": self.client,
-				"posting_date": self.date_reservation,
-				"due_date": self.date_reservation,
-				"items": [{
-					"item_code": "RESERVATION_TERRAIN",  # Item à créer dans ERPNext
-					"item_name": f"Réservation Terrain {self.terrain}",
-					"description": f"Réservation du terrain {self.terrain} le {self.date_reservation} de {self.date_heure_debut} à {self.date_heure_fin}",
-					"qty": self.duree_heures,
-					"rate": self.prix_unitaire,
-					"amount": self.montant_total
-				}],
-				"custom_reservation_terrain": self.name
+			# Créer la facture Koura
+			facture = frappe.get_doc({
+				"doctype": "Facture",
+				"client": self.client,
+				"date_facture": self.date_reservation,
+				"type_facture": "Réservation",
+				"reservation": self.name,
+				"statut": "Brouillon",
+				"lignes_facture": [{
+					"article": "RESERVATION_TERRAIN",
+					"description": f"Réservation du terrain {self.terrain} - {self.type_evenement}",
+					"quantite": self.duree_heures,
+					"prix_unitaire": self.prix_unitaire,
+					"montant_ht": self.montant_total
+				}]
 			})
 			
-			sales_invoice.insert()
-			self.sales_invoice = sales_invoice.name
+			facture.insert()
+			self.facture = facture.name
 			self.save()
 			
 		except Exception as e:
-			frappe.log_error(f"Erreur lors de la création de la facture: {str(e)}")
+			frappe.log_error(f"Erreur lors de la création de la facture Koura: {str(e)}")
+	
+
+	
+	def create_paiement(self, montant_paye, mode_paiement="Espèces"):
+		"""Crée un paiement pour la réservation.
+		
+		Args:
+			montant_paye (float): Montant payé
+			mode_paiement (str): Mode de paiement
+		"""
+		if not self.facture:
+			frappe.throw("Aucune facture associée à cette réservation.")
+		
+		try:
+			paiement = frappe.get_doc({
+				"doctype": "Paiement",
+				"facture": self.facture,
+				"client": self.client,
+				"date_paiement": frappe.utils.today(),
+				"montant_paiement": montant_paye,
+				"mode_paiement": mode_paiement,
+				"statut": "Validé"
+			})
+			
+			paiement.insert()
+			paiement.submit()
+			
+			self.paiement = paiement.name
+			self.statut_paiement = "Payé" if montant_paye >= self.montant_total else "Partiellement Payé"
+			self.save()
+			
+			return paiement.name
+			
+		except Exception as e:
+			frappe.log_error(f"Erreur lors de la création du paiement: {str(e)}")
+			frappe.throw(f"Erreur lors de la création du paiement: {str(e)}")
 	
 	def on_cancel(self):
 		"""Actions à effectuer lors de l'annulation."""
 		self.statut = "Annulée"
 		
-		# Annuler la facture si elle existe
-		if self.sales_invoice:
+		# Annuler la facture Koura si elle existe
+		if self.facture:
 			try:
-				sales_invoice = frappe.get_doc("Sales Invoice", self.sales_invoice)
-				if sales_invoice.docstatus == 1:
-					sales_invoice.cancel()
+				facture = frappe.get_doc("Facture", self.facture)
+				if facture.docstatus == 1:
+					facture.cancel()
 			except Exception as e:
-				frappe.log_error(f"Erreur lors de l'annulation de la facture: {str(e)}")
+				frappe.log_error(f"Erreur lors de l'annulation de la facture Koura: {str(e)}")
+		
+		# Annuler le paiement si il existe
+		if self.paiement:
+			try:
+				paiement = frappe.get_doc("Paiement", self.paiement)
+				if paiement.docstatus == 1:
+					paiement.cancel()
+			except Exception as e:
+				frappe.log_error(f"Erreur lors de l'annulation du paiement: {str(e)}")
+		
+
+
+
+# Méthodes utilitaires
+@frappe.whitelist()
+def get_terrain_availability(terrain, date_debut, date_fin):
+	"""Retourne la disponibilité d'un terrain pour une période donnée.
+	
+	Args:
+		terrain (str): Nom du terrain
+		date_debut (str): Date et heure de début
+		date_fin (str): Date et heure de fin
+		
+	Returns:
+		dict: Informations sur la disponibilité
+	"""
+	terrain_doc = frappe.get_doc("Terrain", terrain)
+	return {
+		"disponible": terrain_doc.is_disponible(date_debut, date_fin),
+		"prix_estime": terrain_doc.get_prix_creneau(
+			get_datetime(date_debut).strftime("%A"),
+			get_datetime(date_debut).time().strftime("%H:%M:%S"),
+			"Normal"
+		)
+	}
+
+@frappe.whitelist()
+def create_reservation_with_payment(terrain, client, date_debut, duree_heures, 
+									 type_evenement="Normal", mode_paiement="Espèces"):
+	"""Crée une réservation avec paiement immédiat.
+	
+	Args:
+		terrain (str): Nom du terrain
+		client (str): Nom du client
+		date_debut (str): Date et heure de début
+		duree_heures (float): Durée en heures
+		type_evenement (str): Type d'événement
+		mode_paiement (str): Mode de paiement
+		
+	Returns:
+		dict: Informations sur la réservation créée
+	"""
+	try:
+		# Créer la réservation
+		reservation = frappe.get_doc({
+			"doctype": "Reservation Terrain",
+			"terrain": terrain,
+			"client": client,
+			"date_reservation": today(),
+			"date_heure_debut": date_debut,
+			"duree_heures": duree_heures,
+			"type_evenement": type_evenement,
+			"mode_paiement": mode_paiement
+		})
+		
+		reservation.insert()
+		reservation.submit()
+		
+		# Créer le paiement
+		paiement_name = reservation.create_paiement(reservation.montant_total, mode_paiement)
+		
+		return {
+			"success": True,
+			"reservation": reservation.name,
+			"facture": reservation.facture,
+			"paiement": paiement_name,
+			"montant_total": reservation.montant_total
+		}
+		
+	except Exception as e:
+		frappe.log_error(f"Erreur lors de la création de la réservation avec paiement: {str(e)}")
+		return {
+			"success": False,
+			"error": str(e)
+		}
+
+@frappe.whitelist()
+def get_client_reservations(client, limit=10):
+	"""Retourne les réservations d'un client.
+	
+	Args:
+		client (str): Nom du client
+		limit (int): Nombre maximum de réservations
+		
+	Returns:
+		list: Liste des réservations
+	"""
+	return frappe.get_list(
+		"Reservation Terrain",
+		filters={"client": client},
+		fields=["name", "terrain", "date_reservation", "date_heure_debut", 
+				"duree_heures", "montant_total", "statut", "statut_paiement"],
+		order_by="date_reservation desc",
+		limit=limit
+	)
