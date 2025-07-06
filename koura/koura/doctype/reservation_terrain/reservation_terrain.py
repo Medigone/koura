@@ -120,16 +120,27 @@ class ReservationTerrain(Document):
 		terrain_doc = frappe.get_doc("Terrain", self.terrain)
 		debut = get_datetime(self.date_heure_debut)
 		
-		# Obtenir le jour de la semaine
-		jour_semaine = get_weekday(debut.date())
-		jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
-		jour_nom = jours[jour_semaine]
+		# Obtenir le jour de la semaine (utiliser strftime pour cohérence)
+		jour_nom = debut.strftime("%A")
+		
+		# Mapper les noms anglais vers français
+		jours_mapping = {
+			"Monday": "Lundi",
+			"Tuesday": "Mardi", 
+			"Wednesday": "Mercredi",
+			"Thursday": "Jeudi",
+			"Friday": "Vendredi",
+			"Saturday": "Samedi",
+			"Sunday": "Dimanche"
+		}
+		
+		jour_nom_fr = jours_mapping.get(jour_nom, jour_nom)
 		
 		# Obtenir le prix pour ce créneau
 		prix_unitaire = terrain_doc.get_prix_creneau(
-			jour_nom,
+			jour_nom_fr,
 			debut.time().strftime("%H:%M:%S"),
-			"Normal"  # TODO: Détecter automatiquement le type d'événement
+			self.type_evenement or "Normal"
 		)
 		
 		self.prix_unitaire = prix_unitaire
@@ -245,11 +256,26 @@ def get_terrain_availability(terrain, date_debut, date_fin):
 		dict: Informations sur la disponibilité
 	"""
 	terrain_doc = frappe.get_doc("Terrain", terrain)
+	debut = get_datetime(date_debut)
+	
+	# Mapper le jour anglais vers français
+	jour_nom = debut.strftime("%A")
+	jours_mapping = {
+		"Monday": "Lundi",
+		"Tuesday": "Mardi", 
+		"Wednesday": "Mercredi",
+		"Thursday": "Jeudi",
+		"Friday": "Vendredi",
+		"Saturday": "Samedi",
+		"Sunday": "Dimanche"
+	}
+	jour_nom_fr = jours_mapping.get(jour_nom, jour_nom)
+	
 	return {
 		"disponible": terrain_doc.is_disponible(date_debut, date_fin),
 		"prix_estime": terrain_doc.get_prix_creneau(
-			get_datetime(date_debut).strftime("%A"),
-			get_datetime(date_debut).time().strftime("%H:%M:%S"),
+			jour_nom_fr,
+			debut.time().strftime("%H:%M:%S"),
 			"Normal"
 		)
 	}
