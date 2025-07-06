@@ -1,87 +1,176 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-06-16 13:43:50.358615",
+ "autoname": "naming_series:",
+ "creation": "2025-01-20 10:00:00.000000",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "status",
-  "section_break_icst",
-  "date",
-  "heure_debut",
-  "heure_fin",
-  "section_break_rcob",
+  "naming_series",
   "terrain",
-  "prix",
-  "column_break_gqnl",
-  "reserver_par",
-  "match"
+  "client",
+  "section_break_reservation",
+  "date_reservation",
+  "date_heure_debut",
+  "column_break_reservation",
+  "duree_heures",
+  "date_heure_fin",
+  "section_break_tarification",
+  "prix_unitaire",
+  "montant_total",
+  "column_break_tarification",
+  "mode_paiement",
+  "statut_paiement",
+  "section_break_statut",
+  "statut",
+  "notes",
+  "section_break_integration",
+  "sales_invoice",
+  "payment_entry"
  ],
  "fields": [
   {
-   "fieldname": "terrain",
-   "fieldtype": "Data",
-   "label": "Terrain"
-  },
-  {
-   "fieldname": "date",
-   "fieldtype": "Date",
-   "label": "Date"
-  },
-  {
-   "fieldname": "heure_debut",
-   "fieldtype": "Datetime",
-   "label": "Heure de d\u00e9but"
-  },
-  {
-   "fieldname": "heure_fin",
-   "fieldtype": "Datetime",
-   "label": "Heure de fin"
-  },
-  {
-   "default": "User",
-   "fieldname": "reserver_par",
-   "fieldtype": "Link",
-   "label": "R\u00e9serv\u00e9 Par",
-   "options": "User"
-  },
-  {
-   "fieldname": "match",
-   "fieldtype": "Link",
-   "label": "Match",
-   "options": "Match"
-  },
-  {
-   "fieldname": "status",
+   "fieldname": "naming_series",
    "fieldtype": "Select",
-   "label": "Statut",
-   "options": "Confirm\u00e9\nAnnul\u00e9"
+   "label": "Série de Numérotation",
+   "options": "RES-.YYYY.-.MM.-.#####",
+   "reqd": 1
   },
   {
-   "fieldname": "section_break_icst",
-   "fieldtype": "Section Break"
+   "fieldname": "terrain",
+   "fieldtype": "Link",
+   "label": "Terrain",
+   "options": "Terrain",
+   "reqd": 1,
+   "in_list_view": 1
   },
   {
-   "fieldname": "section_break_rcob",
-   "fieldtype": "Section Break"
+   "fieldname": "client",
+   "fieldtype": "Link",
+   "label": "Client",
+   "options": "Customer",
+   "reqd": 1,
+   "in_list_view": 1
   },
   {
-   "fieldname": "prix",
+   "fieldname": "section_break_reservation",
+   "fieldtype": "Section Break",
+   "label": "Détails de la Réservation"
+  },
+  {
+   "fieldname": "date_reservation",
+   "fieldtype": "Date",
+   "label": "Date de Réservation",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "date_heure_debut",
+   "fieldtype": "Datetime",
+   "label": "Date et Heure de Début",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_reservation",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "duree_heures",
+   "fieldtype": "Float",
+   "label": "Durée (heures)",
+   "reqd": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "date_heure_fin",
+   "fieldtype": "Datetime",
+   "label": "Date et Heure de Fin",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_tarification",
+   "fieldtype": "Section Break",
+   "label": "Tarification"
+  },
+  {
+   "fieldname": "prix_unitaire",
    "fieldtype": "Currency",
-   "label": "Prix",
+   "label": "Prix par Heure (DZD)",
+   "read_only": 1,
    "precision": "0"
   },
   {
-   "fieldname": "column_break_gqnl",
+   "fieldname": "montant_total",
+   "fieldtype": "Currency",
+   "label": "Montant Total (DZD)",
+   "read_only": 1,
+   "precision": "0",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_tarification",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mode_paiement",
+   "fieldtype": "Select",
+   "label": "Mode de Paiement",
+   "options": "Espèces\nCarte Bancaire\nVirement\nChèque\nPaiement Mobile",
+   "default": "Espèces"
+  },
+  {
+   "fieldname": "statut_paiement",
+   "fieldtype": "Select",
+   "label": "Statut du Paiement",
+   "options": "En Attente\nPayé\nPartiellement Payé\nRemboursé",
+   "default": "En Attente"
+  },
+  {
+   "fieldname": "section_break_statut",
+   "fieldtype": "Section Break",
+   "label": "Statut et Notes"
+  },
+  {
+   "fieldname": "statut",
+   "fieldtype": "Select",
+   "label": "Statut de la Réservation",
+   "options": "Brouillon\nConfirmée\nEn cours\nTerminée\nAnnulée",
+   "default": "Brouillon",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "section_break_integration",
+   "fieldtype": "Section Break",
+   "label": "Intégration ERPNext"
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Facture de Vente",
+   "options": "Sales Invoice",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payment_entry",
+   "fieldtype": "Link",
+   "label": "Écriture de Paiement",
+   "options": "Payment Entry",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2025-06-16 15:17:41.774686",
+ "modified": "2025-01-20 10:00:00.000000",
  "modified_by": "Administrator",
  "module": "Koura",
  "name": "Reservation Terrain",
+ "naming_rule": "By Naming Series",
  "owner": "Administrator",
  "permissions": [
   {
@@ -94,10 +183,33 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Gestionnaire de Stade",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Caissier",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Employé"
   }
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1
 }

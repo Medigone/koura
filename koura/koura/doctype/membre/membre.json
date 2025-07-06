@@ -1,0 +1,280 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:numero_membre",
+ "creation": "2025-01-20 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "numero_membre",
+  "photo",
+  "section_break_info_personnelles",
+  "prenom",
+  "nom",
+  "column_break_info_personnelles",
+  "date_naissance",
+  "telephone",
+  "email",
+  "section_break_adhesion",
+  "date_adhesion",
+  "date_expiration",
+  "column_break_adhesion",
+  "type_adhesion",
+  "statut_membre",
+  "section_break_sport",
+  "poste_prefere",
+  "niveau_jeu",
+  "column_break_sport",
+  "matchs_joues",
+  "note_moyenne",
+  "section_break_fidelite",
+  "points_fidelite",
+  "total_depenses",
+  "column_break_fidelite",
+  "niveau_fidelite",
+  "reduction_applicable",
+  "section_break_integration",
+  "customer",
+  "contact",
+  "section_break_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "numero_membre",
+   "fieldtype": "Data",
+   "label": "Numéro de Membre",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "photo",
+   "fieldtype": "Attach Image",
+   "label": "Photo"
+  },
+  {
+   "fieldname": "section_break_info_personnelles",
+   "fieldtype": "Section Break",
+   "label": "Informations Personnelles"
+  },
+  {
+   "fieldname": "prenom",
+   "fieldtype": "Data",
+   "label": "Prénom",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "nom",
+   "fieldtype": "Data",
+   "label": "Nom",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_info_personnelles",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_naissance",
+   "fieldtype": "Date",
+   "label": "Date de Naissance"
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Data",
+   "label": "Téléphone",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "section_break_adhesion",
+   "fieldtype": "Section Break",
+   "label": "Adhésion"
+  },
+  {
+   "fieldname": "date_adhesion",
+   "fieldtype": "Date",
+   "label": "Date d'Adhésion",
+   "reqd": 1,
+   "default": "Today"
+  },
+  {
+   "fieldname": "date_expiration",
+   "fieldtype": "Date",
+   "label": "Date d'Expiration",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_adhesion",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "type_adhesion",
+   "fieldtype": "Select",
+   "label": "Type d'Adhésion",
+   "options": "Mensuelle\nTrimestrielle\nSemestrielle\nAnnuelle",
+   "default": "Mensuelle"
+  },
+  {
+   "fieldname": "statut_membre",
+   "fieldtype": "Select",
+   "label": "Statut du Membre",
+   "options": "Actif\nInactif\nSuspendu\nExpiré",
+   "default": "Actif",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_break_sport",
+   "fieldtype": "Section Break",
+   "label": "Profil Sportif"
+  },
+  {
+   "fieldname": "poste_prefere",
+   "fieldtype": "Select",
+   "label": "Poste Préféré",
+   "options": "Gardien\nDéfenseur\nMilieu\nAttaquant\nAucune Préférence"
+  },
+  {
+   "fieldname": "niveau_jeu",
+   "fieldtype": "Select",
+   "label": "Niveau de Jeu",
+   "options": "Débutant\nIntermédiaire\nAvancé\nProfessionnel",
+   "default": "Débutant"
+  },
+  {
+   "fieldname": "column_break_sport",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "matchs_joues",
+   "fieldtype": "Int",
+   "label": "Matchs Joués",
+   "default": "0",
+   "read_only": 1
+  },
+  {
+   "fieldname": "note_moyenne",
+   "fieldtype": "Float",
+   "label": "Note Moyenne",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_fidelite",
+   "fieldtype": "Section Break",
+   "label": "Programme de Fidélité"
+  },
+  {
+   "fieldname": "points_fidelite",
+   "fieldtype": "Int",
+   "label": "Points de Fidélité",
+   "default": "0",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_depenses",
+   "fieldtype": "Currency",
+   "label": "Total des Dépenses (DZD)",
+   "precision": "0",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_fidelite",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "niveau_fidelite",
+   "fieldtype": "Select",
+   "label": "Niveau de Fidélité",
+   "options": "Bronze\nArgent\nOr\nPlatine",
+   "default": "Bronze",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reduction_applicable",
+   "fieldtype": "Percent",
+   "label": "Réduction Applicable (%)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_integration",
+   "fieldtype": "Section Break",
+   "label": "Intégration ERPNext"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Client ERPNext",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "contact",
+   "fieldtype": "Link",
+   "label": "Contact ERPNext",
+   "options": "Contact",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-20 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Koura",
+ "name": "Membre",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Gestionnaire de Stade",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Caissier",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Employé"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

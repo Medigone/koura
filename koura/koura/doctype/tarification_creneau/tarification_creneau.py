@@ -5,5 +5,6 @@
 from frappe.model.document import Document
 
 
-class Participation(Document):
+class TarificationCreneau(Document):
+	"""DocType enfant pour la tarification par créneaux des terrains."""
 	pass

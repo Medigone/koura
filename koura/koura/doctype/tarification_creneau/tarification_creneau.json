@@ -1,0 +1,65 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-01-20 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "jour_semaine",
+  "heure_debut",
+  "heure_fin",
+  "prix_creneau",
+  "type_evenement"
+ ],
+ "fields": [
+  {
+   "fieldname": "jour_semaine",
+   "fieldtype": "Select",
+   "label": "Jour de la Semaine",
+   "options": "Lundi\nMardi\nMercredi\nJeudi\nVendredi\nSamedi\nDimanche\nTous les jours",
+   "in_list_view": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "heure_debut",
+   "fieldtype": "Time",
+   "label": "Heure de Début",
+   "in_list_view": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "heure_fin",
+   "fieldtype": "Time",
+   "label": "Heure de Fin",
+   "in_list_view": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "prix_creneau",
+   "fieldtype": "Currency",
+   "label": "Prix du Créneau (DZD)",
+   "in_list_view": 1,
+   "reqd": 1,
+   "precision": "0"
+  },
+  {
+   "fieldname": "type_evenement",
+   "fieldtype": "Select",
+   "label": "Type d'Événement",
+   "options": "Normal\nWeek-end\nJour Férié\nTournoi\nÉvénement Spécial",
+   "default": "Normal"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-01-20 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Koura",
+ "name": "Tarification Creneau",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
