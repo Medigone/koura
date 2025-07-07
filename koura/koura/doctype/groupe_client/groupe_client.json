@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "nom_groupe",
+  "company",
   "description",
   "column_break_info",
   "couleur",
@@ -32,6 +33,14 @@
    "label": "Nom du Groupe",
    "reqd": 1,
    "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Société",
+   "options": "Company",
+   "reqd": 1,
    "in_list_view": 1
   },
   {

@@ -4,3 +4,4 @@
 
 [post_model_sync]
 # Patches added in this section will be executed after doctypes are migrated
+koura.patches.v1_0.add_company_field_to_doctypes

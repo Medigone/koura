@@ -8,6 +8,7 @@
  "field_order": [
   "naming_series",
   "section_informations_base",
+  "company",
   "facture",
   "client",
   "column_break_base",
@@ -44,6 +45,14 @@
    "fieldname": "section_informations_base",
    "fieldtype": "Section Break",
    "label": "Informations de Base"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Société",
+   "options": "Company",
+   "reqd": 1,
+   "in_list_view": 1
   },
   {
    "fieldname": "facture",

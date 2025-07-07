@@ -8,6 +8,7 @@
  "field_order": [
   "naming_series",
   "section_informations_personnelles",
+  "company",
   "nom_complet",
   "prenom",
   "nom_famille",
@@ -51,6 +52,14 @@
    "fieldname": "section_informations_personnelles",
    "fieldtype": "Section Break",
    "label": "Informations Personnelles"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Société",
+   "options": "Company",
+   "reqd": 1,
+   "in_list_view": 1
   },
   {
    "fieldname": "nom_complet",

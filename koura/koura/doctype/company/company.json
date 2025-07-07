@@ -1,0 +1,131 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:nom_societe",
+ "creation": "2025-01-27 10:00:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "nom_societe",
+  "code_societe",
+  "column_break_3",
+  "actif",
+  "section_break_5",
+  "adresse",
+  "telephone",
+  "email",
+  "column_break_9",
+  "logo",
+  "section_break_11",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "nom_societe",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Nom de la Société",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "code_societe",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Code Société",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "actif",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Actif"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break",
+   "label": "Informations de Contact"
+  },
+  {
+   "fieldname": "adresse",
+   "fieldtype": "Text",
+   "label": "Adresse"
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Data",
+   "label": "Téléphone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "logo",
+   "fieldtype": "Attach Image",
+   "label": "Logo"
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break",
+   "label": "Description"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Koura",
+ "name": "Company",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

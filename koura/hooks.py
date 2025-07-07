@@ -1,7 +1,7 @@
 app_name = "koura"
 app_title = "Koura"
 app_publisher = "IntraPro"
-app_description = "Application pour amateurs de foot en Algerie, organisation de match etc"
+app_description = "Application pour Gestion de Stades de Football Amateur"
 app_email = "admin@medigo.one"
 app_license = "mit"
 
@@ -83,7 +83,6 @@ app_license = "mit"
 # ------------
 
 # before_install = "koura.install.before_install"
-# after_install = "koura.install.after_install"
 
 # Uninstallation
 # ------------
@@ -118,11 +117,11 @@ app_license = "mit"
 # Permissions evaluated in scripted ways
 
 # permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
+# 	"User": "koura.utils.get_permission_query_conditions_for_user"
 # }
-#
+
 # has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
+# 	"User": "koura.utils.has_permission_for_user"
 # }
 
 # DocType Class
