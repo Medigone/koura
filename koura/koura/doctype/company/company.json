@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:nom_societe",
- "creation": "2025-01-27 10:00:00.000000",
+ "creation": "2025-01-27 10:00:00",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -26,7 +26,7 @@
    "fieldname": "nom_societe",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Nom de la Société",
+   "label": "Nom de la Soci\u00e9t\u00e9",
    "reqd": 1,
    "unique": 1
   },
@@ -34,7 +34,7 @@
    "fieldname": "code_societe",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Code Société",
+   "label": "Code Soci\u00e9t\u00e9",
    "reqd": 1,
    "unique": 1
   },
@@ -62,7 +62,7 @@
   {
    "fieldname": "telephone",
    "fieldtype": "Data",
-   "label": "Téléphone"
+   "label": "T\u00e9l\u00e9phone"
   },
   {
    "fieldname": "email",
@@ -92,7 +92,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-27 10:00:00.000000",
+ "modified": "2025-07-07 22:25:22.712327",
  "modified_by": "Administrator",
  "module": "Koura",
  "name": "Company",
@@ -122,6 +122,15 @@
    "role": "Administrator",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Gestionnaire de Stade",
+   "share": 1
   }
  ],
  "sort_field": "modified",
